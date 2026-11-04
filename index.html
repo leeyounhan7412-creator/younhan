@@ -1216,39 +1216,39 @@
       document.getElementById('mobile-menu').classList.toggle('hidden');
     }
 
-    // Animated counters
-    function animateCounters() {
-      const stats = [
-        { id: 'stat-redtape', end: 0, suffix: '' },
-        { id: 'stat-gridlock', end: 0, suffix: '' },
-        { id: 'stat-members', end: 0, suffix: '' },
-        { id: 'stat-efficiency', end: 0, suffix: '%' }
-      ];
+// Animated counters
+function animateCounters() {
+  const stats = [
+    { id: 'stat-redtape', end: 1420, suffix: '+' },
+    { id: 'stat-gridlock', end: 89, suffix: '' },
+    { id: 'stat-members', end: 54300, suffix: '+' },
+    { id: 'stat-efficiency', end: 100, suffix: '%' }
+  ];
 
-      stats.forEach(stat => {
-        const el = document.getElementById(stat.id);
-        if (!el) return;
+  stats.forEach(stat => {
+    const el = document.getElementById(stat.id);
+    if (!el) return;
 
-        let start = 0;
-        const duration = 2000;
-        const stepTime = 30;
-        const steps = duration / stepTime;
-        const increment = stat.end / steps;
+    let start = 0;
+    const duration = 2000;
+    const stepTime = 30;
+    const steps = duration / stepTime;
+    const increment = stat.end / steps;
 
-        const timer = setInterval(() => {
-          start += increment;
+    const timer = setInterval(() => {
+      start += increment;
 
-          if (start >= stat.end) {
-            el.innerText = Math.floor(stat.end).toLocaleString() + stat.suffix;
-            clearInterval(timer);
-          } else {
-            el.innerText = Math.floor(start).toLocaleString() + stat.suffix;
-          }
-        }, stepTime);
-      });
-    }
+      if (start >= stat.end) {
+        el.innerText = Math.floor(stat.end).toLocaleString() + stat.suffix;
+        clearInterval(timer);
+      } else {
+        el.innerText = Math.floor(start).toLocaleString() + stat.suffix;
+      }
+    }, stepTime);
+  });
+}
 
-    window.addEventListener('load', animateCounters);
+window.addEventListener('load', animateCounters);
 
     // Policy Unclogger tool
     const blockageData = {
