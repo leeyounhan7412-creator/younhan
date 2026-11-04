@@ -1419,5 +1419,100 @@ window.addEventListener('load', animateCounters);
       event.target.reset();
     }
   </script>
+  
+<!-- CAMPAIGN VIDEO POPUP -->
+<div id="campaignVideoPopup"
+     class="hidden fixed inset-0 z-[9999] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+
+  <div class="relative bg-[#4A3022] border-2 border-[#F2C94C] rounded-2xl shadow-2xl w-full max-w-3xl overflow-hidden">
+
+    <!-- CLOSE BUTTON -->
+    <button
+      onclick="closeCampaignPopup()"
+      aria-label="Close campaign video"
+      class="absolute top-3 right-3 z-20 bg-black/60 hover:bg-black text-white w-10 h-10 rounded-full text-2xl flex items-center justify-center">
+      &times;
+    </button>
+
+    <!-- POPUP CONTENT -->
+    <div class="p-5 sm:p-8 text-center">
+
+      <span class="inline-block bg-[#F2C94C]/20 border border-[#F2C94C]/50 text-[#F2C94C] px-4 py-2 rounded-full text-xs sm:text-sm font-black tracking-widest mb-4">
+        SPECIAL CAMPAIGN MESSAGE
+      </span>
+
+      <h2 class="text-white text-3xl sm:text-4xl font-black uppercase mb-2">
+        PARTY POOPERS PRESENTS
+      </h2>
+
+      <p class="text-[#F2C94C] font-bold text-lg mb-6">
+        Ready to clear things up?
+      </p>
+
+      <!-- CAMPAIGN VIDEO WITH SOUND -->
+      <video
+        id="campaignVideo"
+        class="w-full rounded-xl border border-[#F2C94C]/40 bg-black"
+        controls
+        playsinline
+        preload="metadata">
+
+        <source src="campaign.mp4" type="video/mp4">
+
+        Your browser does not support this video.
+      </video>
+
+      <p class="text-gray-300 text-sm mt-4 mb-5">
+        Watch our campaign video and discover the Party Poopers movement.
+      </p>
+
+      <!-- CLOSE OPTION -->
+      <button
+        onclick="closeCampaignPopup()"
+        class="text-gray-300 hover:text-[#F2C94C] underline text-sm font-semibold">
+        Maybe later
+      </button>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- CAMPAIGN POPUP SCRIPT -->
+<script>
+
+  function closeCampaignPopup() {
+    const popup = document.getElementById('campaignVideoPopup');
+    const video = document.getElementById('campaignVideo');
+
+    popup.classList.add('hidden');
+
+    // Stop video and reset it
+    video.pause();
+    video.currentTime = 0;
+  }
+
+  // Show popup after 3 seconds, once per browser session
+  document.addEventListener('DOMContentLoaded', function () {
+
+    if (!sessionStorage.getItem('campaignPopupShown')) {
+
+      setTimeout(function () {
+
+        const popup = document.getElementById('campaignVideoPopup');
+
+        popup.classList.remove('hidden');
+
+        // Remember that popup has appeared this session
+        sessionStorage.setItem('campaignPopupShown', 'true');
+
+      }, 3000);
+
+    }
+
+  });
+
+</script>
+
 </body>
 </html>
